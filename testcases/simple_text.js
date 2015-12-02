@@ -120,6 +120,19 @@ tests.push( { name: "Queries.Text.FindSingle",
         });
 
 /*
+* Setup: Create a text-indexed collection with large documents filled with
+         fake words/phrase
+* Test:  Run case-insensitive single-word text queries against the collection
+*/
+tests.push( { name: "Queries.Text.FindSingleLargeDocuments",
+            tags: ['query','text','core','indexed'],
+            pre: function(collection) {
+                populateCollection(collection, dictSize, dictSize);
+            },
+            ops: oplistSingleWord(false)
+        });
+
+/*
 * Setup: Create a text-indexed collection with documents filled with fake
          words/phrase
 * Test:  Run case-sensitive single-word text queries against the collection
